@@ -1,5 +1,5 @@
 from pyray import *
-from genie.services.constants.keys import *
+from constants.keys import *
 
 """
     This map maps the Genie consant id of each key to its partner in the Raylib framework.

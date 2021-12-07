@@ -1,5 +1,5 @@
 from pyray import *
-from genie.services.constants.mouse import *
+from constants.mouse import *
 
 """
     This map maps the Genie consant id of each mouse button to its partner in the Raylib framework.
