@@ -1,9 +1,9 @@
 from pyray import *
 from raylib.colors import *
 import math
-import shared.constants as constants
-from casting.actor import Actor
-from casting.animatedActor import AnimatedActor
+
+from genie.cast.actor import Actor
+from genie.cast.animatedActor import AnimatedActor
 
 circle_sectors_dict = {
     # tr    tl    bl    br       : (start_angle, end_angle)
@@ -258,20 +258,3 @@ class RaylibScreenService:
             This might be used in the future
         """
         pass
-
-    def is_window_open(self):
-        """Whether or not the window was closed by the user.
-
-        Returns:
-            bool: True if the window is closing; false if otherwise.
-        """
-        return not window_should_close()
-
-    def open_window(self):
-        """Opens a new window with the provided title.
-
-        Args:
-            title (string): The title of the window.
-        """
-        init_window(constants.MAX_X, constants.MAX_Y, constants.CAPTION)
-        set_target_fps(constants.FRAME_RATE)

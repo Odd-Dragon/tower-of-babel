@@ -1,7 +1,7 @@
-from pyray import *
-from casting.actor import Actor
+import pygame
+from genie.cast.actor import Actor
 
-class RaylibPhysicsService:
+class PygamePhysicsService:
     def __init__(self):
         """
             Tools you can find here can help you:
@@ -10,50 +10,56 @@ class RaylibPhysicsService:
                 - Move the actors
                 - Rotate the actors
         """
-        pass
+        if not pygame.get_init():
+            pygame.init()
 
     def _get_rectangle(self, actor: Actor):
         """
-            Create a rectangle given an actor and its attribute.
-            (don't worry about this)
+            Create a rectangle given an actor and its attributes
+            Users don't need to worry too much about this function
         """
-        return Rectangle(actor.get_top_left()[0], actor.get_top_left()[1], actor.get_width(), actor.get_height())
+        return pygame.Rect(actor.get_top_left()[0], actor.get_top_left()[1], actor.get_width(), actor.get_height())
 
     def rotate_actors(self, actors : list):
         """
-            Simply tell all the actors to rotate using their own rotation velocity
+            Simply calling the rotate method of actors
         """
         for actor in actors:
             actor.rotate()
 
     def move_actors(self, actors : list):
         """
-            Tell all the actors to move using their velocity
+            Simply tell all the actors to move with their current velocity
         """
         for actor in actors:
             actor.move_with_vel()
 
     def check_collision(self, actor1 : Actor, actor2 : Actor):
         """
-            Check to see if actor1 is collided with actor2
-            - create Rectangle shapes for both actors
-            - call check_collision_recs (for rectangles)
+            Check to see if actor1 collides with actor2
+            - create pygame.Shape rectangle
+            - call colliderect
         """
-        return check_collision_recs( self._get_rectangle(actor1), self._get_rectangle(actor2) )
+        return self._get_rectangle(actor1) \
+                .colliderect(
+                self._get_rectangle(actor2)
+                )
     
     def check_collision_point(self, actor: Actor, point : tuple):
         """
-            Check to see if an actor is collided with a point
+            Check to see if an actor collides with a given point
+                point: tuple
+                actor: Actor
         """
-        return check_collision_point_rec( Vector2(point[0], point[1]), self._get_rectangle(actor) )
-    
+        return self._get_rectangle(actor).collidepoint(point[0], point[1])
+
     def check_collision_list(self, target: Actor, actors: list):
         """
             return the first actor in the actors list that collides with target
             If target doesn't collide with any of the actors, return -1
         """
         for actor in actors:
-            if check_collision_recs( self._get_rectangle(target), self._get_rectangle(actor) ):
+            if self._get_rectangle(target).colliderect(self._get_rectangle(actor)):
                 return actor
         return -1
     
