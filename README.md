@@ -32,8 +32,8 @@ root                    (project root folder)
 * Raylib Python CFFI 3.7
 
 ## Authors
-Evan Thomson
-Kalina Warner
-Landon Lee
-Ronald Coello
+* Evan Thomson
+* Kalina Warner
+* Landon Lee
+* Ronald Coello
 ---
