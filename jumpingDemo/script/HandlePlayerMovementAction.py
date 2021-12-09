@@ -9,18 +9,34 @@ class HandlePlayerMovementAction(Action):
 
     def execute(self, actors, actions, clock, callback):
         player = actors.get_first_actor("player")
-
         player_vx = player.get_vx()
 
-        if self._keyboard_service.is_key_down(keys.LEFT):
-            player_vx = -7
-        if self._keyboard_service.is_key_down(keys.RIGHT):
-            player_vx = 7
-        
-        if not self._keyboard_service.is_key_down(keys.LEFT) and not self._keyboard_service.is_key_down(keys.RIGHT):
+        PLAYERSPEED = 5
+        AIRDRAG = 0.5
+        do_airdrag = True
+
+        #if not self._keyboard_service.is_key_down(keys.A) and not self._keyboard_service.is_key_down(keys.D):
+        if do_airdrag:
+            if player_vx < AIRDRAG and player_vx > -AIRDRAG:
+                player_vx = 0
             if player_vx > 0:
-                player_vx -= 1
+                player_vx -= AIRDRAG
+                if player_vx > AIRDRAG*10:
+                    player_vx -= AIRDRAG
+
             if player_vx < 0:
-                player_vx += 1
+                player_vx += AIRDRAG
+                if player_vx < AIRDRAG*-10:
+                    player_vx += AIRDRAG
+
+        if self._keyboard_service.is_key_down(keys.A):
+            if player.get_vx() > -PLAYERSPEED:
+                player_vx = -PLAYERSPEED
+        if self._keyboard_service.is_key_down(keys.D):
+            if player.get_vx() < PLAYERSPEED:
+                player_vx = PLAYERSPEED
+        
+        
+                
 
         player.set_vx(player_vx)

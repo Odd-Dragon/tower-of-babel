@@ -15,4 +15,4 @@ class HandlePlayerJumpAtBottomOfPlatform(Action):
                 # If collides from the left or right, prevents player from going through platform
                 platform_bottom = platform.get_bottom_left()[1]
                 player.set_y(platform_bottom + (player.get_height() / 2))
-                player.set_vy(1) #set the velocity = 0 so it starts to fall
+                player.set_vy(2) #set the velocity = 0 so it starts to fall

@@ -1,6 +1,6 @@
 from genie.script.action import Action
 
-GRAVITY = 0.5
+GRAVITY = 0.4
 
 class ApplyGravtityToPlayer(Action):
     def __init__(self, priority):
