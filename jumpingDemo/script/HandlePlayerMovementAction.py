@@ -10,9 +10,9 @@ class HandlePlayerMovementAction(Action):
     def execute(self, actors, actions, clock, callback):
         player = actors.get_first_actor("player")
         if self._keyboard_service.is_key_down(keys.LEFT):
-            player.set_vx(-3)
+            player.set_vx(-7)
         if self._keyboard_service.is_key_down(keys.RIGHT):
-            player.set_vx(3)
+            player.set_vx(7)
         
         if not self._keyboard_service.is_key_down(keys.LEFT) and not self._keyboard_service.is_key_down(keys.RIGHT):
             player.set_vx(0)

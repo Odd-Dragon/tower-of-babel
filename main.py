@@ -8,6 +8,7 @@ from jumpingDemo.script.HandlePlayerAbovePlatforms import HandlePlayerAbovePlatf
 from jumpingDemo.script.HandlePlayerMovementAction import HandlePlayerMovementAction
 from jumpingDemo.script.HandlePlayerJumpOnSidesOfPlatform import HandlePlayerJumpOnSidesOfPlatform
 from jumpingDemo.script.HandlePlayerJumpAtBottomOfPlatform import HandlePlayerJumpAtBottomOfPlatform
+from jumpingDemo.script.HandleSpawnAction import HandleSpawnAction
 
 from genie.cast.cast import Cast
 from genie.cast.actor import Actor
@@ -30,16 +31,27 @@ def main():
     director = Director()
 
     cast = Cast()
+    
+    player = Player("", 50, 50, 200, 800)
+    base_platform = Actor("", 600, 400, 300, 1000)
 
-    player = Player("", 50, 50, 100, 400)
-    platform1 = Actor("", 600, 400, 300, 800)
-    platform2 = Actor("", 150, 100, 400, 375)
-    platform3 = Actor("", 150, 50, 120, 450)
+    platform1 = Actor("", 200, 20, 400, 650, vy=1.5)
+    platform2 = Actor("", 200, 20, 100, 500, vy=1.5)
+    platform3 = Actor("", 300, 20, 400, 350, vy=1.5)
+    platform4 = Actor("", 200, 20, 500, 200, vy=1.5)
+    platform5 = Actor("", 300, 20, 100, 50, vy=1.5)
+   
     
     cast.add_actor("player", player)
+    cast.add_actor("base_platform", base_platform)
     cast.add_actor("platform", platform1)
     cast.add_actor("platform", platform2)
     cast.add_actor("platform", platform3)
+    cast.add_actor("platform", platform4)
+    cast.add_actor("platform", platform5)
+    
+    
+    
 
     script = Script()
 
@@ -49,6 +61,7 @@ def main():
 
 
     script.add_action("update", MoveActorsAction(1, physics_service))
+    script.add_action("update", HandleSpawnAction(1, physics_service))
     script.add_action("update", HandlePlayerAbovePlatforms(1, physics_service))
     script.add_action("update", HandlePlayerJumpAtBottomOfPlatform(1, physics_service))
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
