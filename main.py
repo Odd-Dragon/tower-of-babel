@@ -34,14 +34,14 @@ def main():
 
     cast = Cast()
     
-    player = Player("", 50, 50, 200, 800)
+    player = Player("genie/assets/zombie.png", 50, 50, 200, 800)
     base_platform = Actor("", 600, 400, 300, 1000)
 
-    platform1 = Actor("", 200, 20, 400, 650, vy=1.5)
-    platform2 = Actor("", 200, 20, 100, 500, vy=1.5)
-    platform3 = Actor("", 300, 20, 400, 350, vy=1.5)
-    platform4 = Actor("", 200, 20, 500, 200, vy=1.5)
-    platform5 = Actor("", 300, 20, 100, 50, vy=1.5)
+    platform1 = Actor("genie/assets/platfform.png", 200, 20, 400, 650, vy=1.5)
+    platform2 = Actor("genie/assets/platfform.png", 200, 20, 100, 500, vy=1.5)
+    platform3 = Actor("genie/assets/platfform.png", 300, 20, 400, 350, vy=1.5)
+    platform4 = Actor("genie/assets/platfform.png", 200, 20, 500, 200, vy=1.5)
+    platform5 = Actor("genie/assets/platfform.png", 300, 20, 100, 50, vy=1.5)
    
     
     cast.add_actor("player", player)
