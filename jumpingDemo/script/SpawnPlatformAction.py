@@ -4,7 +4,7 @@ from genie.script.action import UpdateAction
 import random as rd
 SPAWN_INTERVAL = 2
 
-class HandleSpawnAction(UpdateAction):
+class SpawnPlatformAction(UpdateAction):
     def __init__(self, priority, window_size):
         super().__init__(priority)
        
