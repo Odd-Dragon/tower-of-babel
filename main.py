@@ -1,6 +1,7 @@
 from jumpingDemo.script.DrawActorAction import DrawActorAction
 from jumpingDemo.script.HandleJumpingAction import HandleJumpingAction
 from jumpingDemo.script.HandleQuitAction import HandleQuitAction
+from jumpingDemo.script.RemovePlatformAction import RemovePlatformAction
 from jumpingDemo.script.SpawnBirdAction import SpawnBirdAction
 from jumpingDemo.script.RemoveBirdAction import RemoveBirdAction
 from jumpingDemo.script.UpdateScreenAction import UpdateScreenAction
@@ -20,7 +21,6 @@ from genie.director import Director
 
 from genie.services import *
 from jumpingDemo.cast.player import Player
-from jumpingDemo.cast.bird import Bird
 
 
 W_SIZE = (600, 800)
@@ -43,16 +43,15 @@ def main():
     platform3 = Actor("genie/assets/platform.png", 300, 20, 400, 350, vy=1.5)
     platform4 = Actor("genie/assets/platform.png", 200, 20, 500, 200, vy=1.5)
     platform5 = Actor("genie/assets/platform.png", 300, 20, 100, 50, vy=1.5)
+   
     
     cast.add_actor("player", player)
     cast.add_actor("base_platform", base_platform)
-    cast.add_actor("platform", platform1)
-    cast.add_actor("platform", platform2)
-    cast.add_actor("platform", platform3)
-    cast.add_actor("platform", platform4)
-    cast.add_actor("platform", platform5)
-
-
+    cast.add_actor("platforms", platform1)
+    cast.add_actor("platforms", platform2)
+    cast.add_actor("platforms", platform3)
+    cast.add_actor("platforms", platform4)
+    cast.add_actor("platforms", platform5)
     
     
     
@@ -71,6 +70,7 @@ def main():
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
     script.add_action("update", ApplyGravtityToPlayer(2))
     script.add_action("update", RemoveBirdAction(1))
+    script.add_action("update", RemovePlatformAction(1))
 
 
     script.add_action("output", DrawActorAction(1, screen_service))
