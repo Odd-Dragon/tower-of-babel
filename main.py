@@ -1,6 +1,7 @@
 from jumpingDemo.script.DrawActorAction import DrawActorAction
 from jumpingDemo.script.HandleJumpingAction import HandleJumpingAction
 from jumpingDemo.script.HandleQuitAction import HandleQuitAction
+from jumpingDemo.script.RemovePlatformAction import RemovePlatformAction
 from jumpingDemo.script.SpawnBirdAction import SpawnBirdAction
 from jumpingDemo.script.RemoveBirdAction import RemoveBirdAction
 from jumpingDemo.script.UpdateScreenAction import UpdateScreenAction
@@ -46,11 +47,11 @@ def main():
     
     cast.add_actor("player", player)
     cast.add_actor("base_platform", base_platform)
-    cast.add_actor("platform", platform1)
-    cast.add_actor("platform", platform2)
-    cast.add_actor("platform", platform3)
-    cast.add_actor("platform", platform4)
-    cast.add_actor("platform", platform5)
+    cast.add_actor("platforms", platform1)
+    cast.add_actor("platforms", platform2)
+    cast.add_actor("platforms", platform3)
+    cast.add_actor("platforms", platform4)
+    cast.add_actor("platforms", platform5)
     
     
     
@@ -69,6 +70,7 @@ def main():
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
     script.add_action("update", ApplyGravtityToPlayer(2))
     script.add_action("update", RemoveBirdAction(1))
+    script.add_action("update", RemovePlatformAction(1))
 
 
     script.add_action("output", DrawActorAction(1, screen_service))
