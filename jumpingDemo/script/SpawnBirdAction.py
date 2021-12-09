@@ -14,8 +14,8 @@ class SpawnBirdAction(Action):
             vertical_spawn_point = randint(100, 700)
             if left_or_right_spawn == 0:
                 bird_velocity = 10
-            elif left_or_right_spawn == 600:
+            else:
                 bird_velocity = -10
-            bird = Bird("", 50, 40, left_or_right_spawn, vertical_spawn_point, bird_velocity, 0)
+            bird = Bird("genie/assets/bird.png", 50, 40, left_or_right_spawn, vertical_spawn_point, bird_velocity, 0)
             actors.add_actor("birds", bird)
             self._frame = 0
