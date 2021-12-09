@@ -10,7 +10,7 @@ class HandlePlayerJumpAtBottomOfPlatform(Action):
     def execute(self, actors, actions, clock, callback):
         player = actors.get_first_actor("player")
         #print(player.get_vy())
-        for platform in actors.get_actors("platform"):
+        for platform in actors.get_actors("platforms"):
             if self._physics_service.check_collision(platform, player) and self._physics_service.is_below(player, platform):
                 # If collides from the left or right, prevents player from going through platform
                 platform_bottom = platform.get_bottom_left()[1]
