@@ -10,7 +10,7 @@ from jumpingDemo.script.HandlePlayerAbovePlatforms import HandlePlayerAbovePlatf
 from jumpingDemo.script.HandlePlayerMovementAction import HandlePlayerMovementAction
 from jumpingDemo.script.HandlePlayerJumpOnSidesOfPlatform import HandlePlayerJumpOnSidesOfPlatform
 from jumpingDemo.script.HandlePlayerJumpAtBottomOfPlatform import HandlePlayerJumpAtBottomOfPlatform
-from jumpingDemo.script.HandleSpawnAction import HandleSpawnAction
+from jumpingDemo.script.SpawnPlatformAction import SpawnPlatformAction
 
 from genie.cast.cast import Cast
 from genie.cast.actor import Actor
@@ -63,7 +63,7 @@ def main():
     script.add_action("input", SpawnBirdAction(1))
 
     script.add_action("update", MoveActorsAction(1, physics_service))
-    script.add_action("update", HandleSpawnAction(1, physics_service))
+    script.add_action("update", SpawnPlatformAction(1, physics_service))
     script.add_action("update", HandlePlayerAbovePlatforms(1, physics_service))
     script.add_action("update", HandlePlayerJumpAtBottomOfPlatform(1, physics_service))
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
