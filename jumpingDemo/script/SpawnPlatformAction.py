@@ -4,7 +4,7 @@ from genie.script.action import UpdateAction
 import random as rd
 SPAWN_INTERVAL = 2
 
-class HandleSpawnAction(UpdateAction):
+class SpawnPlatformAction(UpdateAction):
     def __init__(self, priority, window_size):
         super().__init__(priority)
        
@@ -12,7 +12,7 @@ class HandleSpawnAction(UpdateAction):
         
         
     def _create_platforms(self, width:int, height:int, x:int, y:int):
-        return Actor("genie/assets/platfform.png", width, height, x, y, vy=1.5)
+        return Actor("genie/assets/platform.png", width, height, x, y, vy=1.5)
 
     def execute(self, actors, actions, clock, callback):
         width = rd.randint(200,300)
