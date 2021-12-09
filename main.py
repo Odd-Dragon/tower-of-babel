@@ -20,6 +20,7 @@ from genie.director import Director
 
 from genie.services import *
 from jumpingDemo.cast.player import Player
+from jumpingDemo.cast.bird import Bird
 
 
 W_SIZE = (600, 800)
@@ -42,7 +43,6 @@ def main():
     platform3 = Actor("genie/assets/platform.png", 300, 20, 400, 350, vy=1.5)
     platform4 = Actor("genie/assets/platform.png", 200, 20, 500, 200, vy=1.5)
     platform5 = Actor("genie/assets/platform.png", 300, 20, 100, 50, vy=1.5)
-   
     
     cast.add_actor("player", player)
     cast.add_actor("base_platform", base_platform)
@@ -51,6 +51,8 @@ def main():
     cast.add_actor("platform", platform3)
     cast.add_actor("platform", platform4)
     cast.add_actor("platform", platform5)
+
+
     
     
     
