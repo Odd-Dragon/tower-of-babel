@@ -1,6 +1,6 @@
 from genie.script.action import Action
 
-GRAVITY = 1
+GRAVITY = 0.5
 
 class ApplyGravtityToPlayer(Action):
     def __init__(self, priority):
@@ -8,4 +8,7 @@ class ApplyGravtityToPlayer(Action):
 
     def execute(self, actors, actions, clock, callback):
         player = actors.get_first_actor("player")
-        player.set_vy(player.get_vy() + GRAVITY)
+        if player.get_airborne():
+            player.set_vy(player.get_vy() + GRAVITY)
+        else:
+            player.set_vy(2)
