@@ -1,6 +1,5 @@
 from genie.script.action import Action
 from genie.services import *
-GRAVITY = 0.5
 
 class HandleJumpingAction(Action):
     def __init__(self, priority, keyboard_service):
@@ -19,7 +18,7 @@ class HandleJumpingAction(Action):
         else:
             if not player.get_has_dash():
                 player.set_has_dash(True)
-                print("PLAYER HAS DASH. REPLACE THIS WITH A VISUAL INDICATOR.")
+                #print("PLAYER HAS DASH. REPLACE THIS WITH A VISUAL INDICATOR.")
                 self._timer = self._TIMER_RESET
         
         if self._keyboard_service.is_key_pressed(keys.W) and not player.get_airborne():

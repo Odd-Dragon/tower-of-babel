@@ -32,9 +32,11 @@ class HandlePlayerMovementAction(Action):
         if self._keyboard_service.is_key_down(keys.A):
             if player.get_vx() > -PLAYERSPEED:
                 player_vx = -PLAYERSPEED
+                player.set_is_facing_right(False)
         if self._keyboard_service.is_key_down(keys.D):
             if player.get_vx() < PLAYERSPEED:
                 player_vx = PLAYERSPEED
+                player.set_is_facing_right(True)
         
         
                 

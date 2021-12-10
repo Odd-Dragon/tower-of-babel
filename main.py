@@ -12,6 +12,8 @@ from jumpingDemo.script.HandlePlayerMovementAction import HandlePlayerMovementAc
 from jumpingDemo.script.HandlePlayerJumpOnSidesOfPlatform import HandlePlayerJumpOnSidesOfPlatform
 from jumpingDemo.script.HandlePlayerJumpAtBottomOfPlatform import HandlePlayerJumpAtBottomOfPlatform
 from jumpingDemo.script.SpawnPlatformAction import SpawnPlatformAction
+from jumpingDemo.script.ThrowDounutAction import ThrowDounutAction
+from jumpingDemo.script.HandleDounutsAction import HandleDounutsAction
 
 from genie.cast.cast import Cast
 from genie.cast.actor import Actor
@@ -62,7 +64,8 @@ def main():
     script.add_action("input", HandleJumpingAction(1, keyboard_service))
     script.add_action("input", HandlePlayerMovementAction(1, keyboard_service))
     script.add_action("input", SpawnBirdAction(1))
-
+    script.add_action("input", ThrowDounutAction(1, keyboard_service))
+    
     script.add_action("update", MoveActorsAction(1, physics_service))
     script.add_action("update", SpawnPlatformAction(1, physics_service))
     script.add_action("update", HandlePlayerAbovePlatforms(1, physics_service))
@@ -71,6 +74,7 @@ def main():
     script.add_action("update", ApplyGravtityToPlayer(2))
     script.add_action("update", RemoveBirdAction(1))
     script.add_action("update", RemovePlatformAction(1))
+    script.add_action("update", HandleDounutsAction(1))
 
 
     script.add_action("output", DrawActorAction(1, screen_service))
