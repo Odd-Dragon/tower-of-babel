@@ -4,10 +4,11 @@ from jumpingDemo.cast.dounut import Dounut
 GRAVITY = 0.4
 
 class ThrowDounutAction(Action):
-    def __init__(self, priority, keyboard_service):
+    def __init__(self, priority, keyboard_service, audio_service):
         self._keyboard_service = keyboard_service
         self._TIMER_RESET = 60
         self._timer = self._TIMER_RESET
+        self._audio_service = audio_service
         super().__init__(priority)
 
     def execute(self, actors, actions, clock, callback):
@@ -23,6 +24,7 @@ class ThrowDounutAction(Action):
         if self._keyboard_service.is_key_pressed(keys.SPACE):
             THROWSPEED_X = 8
             THROWSPEED_Y = -6
+            self._audio_service.play_sound("genie/assets/dounut-throw.wav", 0.1)
             if player.get_can_throw_dounut():
                 velocity_x = player.get_vx()
                 if player.get_is_facing_right():

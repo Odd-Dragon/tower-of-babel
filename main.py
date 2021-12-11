@@ -32,6 +32,7 @@ def main():
     screen_service = RaylibScreenService(W_SIZE)
     physics_service = RaylibPhysicsService()
     keyboard_service = RaylibKeyboardService()
+    audio_service = RaylibAudioService()
 
     director = Director()
 
@@ -61,10 +62,10 @@ def main():
     script = Script()
 
     script.add_action("input", HandleQuitAction(1, keyboard_service))
-    script.add_action("input", HandleJumpingAction(1, keyboard_service))
+    script.add_action("input", HandleJumpingAction(1, keyboard_service, audio_service))
     script.add_action("input", HandlePlayerMovementAction(1, keyboard_service))
     script.add_action("input", SpawnBirdAction(1))
-    script.add_action("input", ThrowDounutAction(1, keyboard_service))
+    script.add_action("input", ThrowDounutAction(1, keyboard_service, audio_service))
     
     script.add_action("update", MoveActorsAction(1, physics_service))
     script.add_action("update", SpawnPlatformAction(1, physics_service))
