@@ -11,6 +11,7 @@ from jumpingDemo.script.HandlePlayerMovementAction import HandlePlayerMovementAc
 from jumpingDemo.script.HandlePlayerJumpOnSidesOfPlatform import HandlePlayerJumpOnSidesOfPlatform
 from jumpingDemo.script.HandlePlayerJumpAtBottomOfPlatform import HandlePlayerJumpAtBottomOfPlatform
 from jumpingDemo.script.HandleSpawnAction import HandleSpawnAction
+#from jumpingDemo.script.MoveBackgroundAction import MoveBackgroundAction
 
 from genie.cast.cast import Cast
 from genie.cast.actor import Actor
@@ -20,7 +21,7 @@ from genie.director import Director
 
 from genie.services import *
 from jumpingDemo.cast.player import Player
-
+from jumpingDemo.cast.background import Background
 
 W_SIZE = (600, 800)
 
@@ -43,7 +44,13 @@ def main():
     platform4 = Actor("genie/assets/platform.png", 200, 20, 500, 200, vy=1.5)
     platform5 = Actor("genie/assets/platform.png", 300, 20, 100, 50, vy=1.5)
    
-    
+    background1 = Background(301,0)
+    background2 = Background(301,300)
+    background3 = Background(301,850)
+
+    cast.add_actor("background", background1)
+    cast.add_actor("background", background2)
+    cast.add_actor("background", background3)
     cast.add_actor("player", player)
     cast.add_actor("base_platform", base_platform)
     cast.add_actor("platform", platform1)
@@ -52,9 +59,6 @@ def main():
     cast.add_actor("platform", platform4)
     cast.add_actor("platform", platform5)
     
-    
-    
-
     script = Script()
 
     script.add_action("input", HandleQuitAction(1, keyboard_service))
@@ -69,6 +73,7 @@ def main():
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
     script.add_action("update", ApplyGravtityToPlayer(2))
     script.add_action("update", RemoveBirdAction(1))
+    #script.add_action("update", MoveBackgroundAction(1))
 
 
     script.add_action("output", DrawActorAction(1, screen_service))
