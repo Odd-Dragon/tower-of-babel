@@ -1,6 +1,7 @@
 from jumpingDemo.script.DrawActorAction import DrawActorAction
 from jumpingDemo.script.HandleJumpingAction import HandleJumpingAction
 from jumpingDemo.script.HandleQuitAction import HandleQuitAction
+from jumpingDemo.script.RemovePlatformAction import RemovePlatformAction
 from jumpingDemo.script.SpawnBirdAction import SpawnBirdAction
 from jumpingDemo.script.RemoveBirdAction import RemoveBirdAction
 from jumpingDemo.script.UpdateScreenAction import UpdateScreenAction
@@ -12,6 +13,9 @@ from jumpingDemo.script.HandlePlayerJumpOnSidesOfPlatform import HandlePlayerJum
 from jumpingDemo.script.HandlePlayerJumpAtBottomOfPlatform import HandlePlayerJumpAtBottomOfPlatform
 from jumpingDemo.script.HandleSpawnAction import HandleSpawnAction
 #from jumpingDemo.script.MoveBackgroundAction import MoveBackgroundAction
+from jumpingDemo.script.SpawnPlatformAction import SpawnPlatformAction
+from jumpingDemo.script.ThrowDounutAction import ThrowDounutAction
+from jumpingDemo.script.HandleDounutsAction import HandleDounutsAction
 
 from genie.cast.cast import Cast
 from genie.cast.actor import Actor
@@ -30,6 +34,7 @@ def main():
     screen_service = RaylibScreenService(W_SIZE)
     physics_service = RaylibPhysicsService()
     keyboard_service = RaylibKeyboardService()
+    audio_service = RaylibAudioService()
 
     director = Director()
 
@@ -53,27 +58,30 @@ def main():
     cast.add_actor("background", background3)
     cast.add_actor("player", player)
     cast.add_actor("base_platform", base_platform)
-    cast.add_actor("platform", platform1)
-    cast.add_actor("platform", platform2)
-    cast.add_actor("platform", platform3)
-    cast.add_actor("platform", platform4)
-    cast.add_actor("platform", platform5)
+    cast.add_actor("platforms", platform1)
+    cast.add_actor("platforms", platform2)
+    cast.add_actor("platforms", platform3)
+    cast.add_actor("platforms", platform4)
+    cast.add_actor("platforms", platform5)
     
     script = Script()
 
     script.add_action("input", HandleQuitAction(1, keyboard_service))
-    script.add_action("input", HandleJumpingAction(1, keyboard_service))
+    script.add_action("input", HandleJumpingAction(1, keyboard_service, audio_service))
     script.add_action("input", HandlePlayerMovementAction(1, keyboard_service))
     script.add_action("input", SpawnBirdAction(1))
-
+    script.add_action("input", ThrowDounutAction(1, keyboard_service, audio_service))
+    
     script.add_action("update", MoveActorsAction(1, physics_service))
-    script.add_action("update", HandleSpawnAction(1, physics_service))
+    script.add_action("update", SpawnPlatformAction(1, physics_service))
     script.add_action("update", HandlePlayerAbovePlatforms(1, physics_service))
     script.add_action("update", HandlePlayerJumpAtBottomOfPlatform(1, physics_service))
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
     script.add_action("update", ApplyGravtityToPlayer(2))
     script.add_action("update", RemoveBirdAction(1))
     #script.add_action("update", MoveBackgroundAction(1))
+    script.add_action("update", RemovePlatformAction(1))
+    script.add_action("update", HandleDounutsAction(1))
 
 
     script.add_action("output", DrawActorAction(1, screen_service))

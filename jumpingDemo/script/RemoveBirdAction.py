@@ -1,5 +1,4 @@
 from genie.script.action import Action
-from jumpingDemo.cast.bird import Bird
 
 class RemoveBirdAction(Action):
     def __init__(self, priority):
@@ -8,5 +7,5 @@ class RemoveBirdAction(Action):
     def execute(self, actors, actions, clock, callback):
         birds = actors.get_actors("birds")
         for bird in birds:
-            if bird.get_x() > 410:
+            if bird.get_x() > 610 or bird.get_x() < -10:
                 actors.remove_actor("birds", bird)
