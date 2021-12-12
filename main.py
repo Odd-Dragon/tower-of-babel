@@ -11,7 +11,6 @@ from jumpingDemo.script.HandlePlayerAbovePlatforms import HandlePlayerAbovePlatf
 from jumpingDemo.script.HandlePlayerMovementAction import HandlePlayerMovementAction
 from jumpingDemo.script.HandlePlayerJumpOnSidesOfPlatform import HandlePlayerJumpOnSidesOfPlatform
 from jumpingDemo.script.HandlePlayerJumpAtBottomOfPlatform import HandlePlayerJumpAtBottomOfPlatform
-from jumpingDemo.script.HandleSpawnAction import HandleSpawnAction
 #from jumpingDemo.script.MoveBackgroundAction import MoveBackgroundAction
 from jumpingDemo.script.SpawnPlatformAction import SpawnPlatformAction
 from jumpingDemo.script.ThrowDounutAction import ThrowDounutAction
