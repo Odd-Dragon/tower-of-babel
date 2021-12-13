@@ -46,20 +46,20 @@ def main():
     #Add the animated Player:
     player_animations = []
     for i in range(1, 3):
-        file_index = i
-        player_animations.append(f"resources/zombie{file_index}.png")
+        
+        player_animations.append(f"resources/zombie{i}.png")
     player = Player(player_animations, 50, 50, 30, MAX_FPS, True, 200, 300)
-    limit_top = Actor("genie/assets/platform.png", 600, 400, 300, -200)
+    limit_top = Actor("resources/platform.png", 600, 400, 300, -200)
     limit_bottom = Actor("", 600, 400, 300, 1000)
     
     limit_left = Actor("", 600, 800, -300, 400)
     limit_right = Actor("", 600, 800, 900, 400)
 
-    platform1 = Actor("genie/assets/platform.png", 200, 20, 400, 600, vy=1.5)
-    platform2 = Actor("genie/assets/platform.png", 200, 20, 100, 450, vy=1.5)
-    platform3 = Actor("genie/assets/platform.png", 300, 20, 400, 300, vy=1.5)
-    platform4 = Actor("genie/assets/platform.png", 200, 20, 500, 150, vy=1.5)
-    platform5 = Actor("genie/assets/platform.png", 300, 20, 100, 0, vy=1.5)
+    platform1 = Actor("resources/platform.png", 200, 20, 400, 600, vy=1.5)
+    platform2 = Actor("resources/platform.png", 200, 20, 100, 450, vy=1.5)
+    platform3 = Actor("resources/platform.png", 300, 20, 400, 300, vy=1.5)
+    platform4 = Actor("resources/platform.png", 200, 20, 500, 150, vy=1.5)
+    platform5 = Actor("resources/platform.png", 300, 20, 100, 0, vy=1.5)
    
     background1 = Background(301,0)
     background2 = Background(301,300)

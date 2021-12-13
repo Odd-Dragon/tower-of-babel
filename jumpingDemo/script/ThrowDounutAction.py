@@ -16,7 +16,7 @@ class ThrowDounutAction(Action):
             player.set_can_throw_dounut(False)
             THROWSPEED_X = 8
             THROWSPEED_Y = -6
-            self._audio_service.play_sound("genie/assets/dounut-throw.wav", 0.1)
+            self._audio_service.play_sound("resources/dounut-throw.wav", 0.1)
             velocity_x = player.get_vx()
             if player.get_is_facing_right():
                 velocity_x += THROWSPEED_X

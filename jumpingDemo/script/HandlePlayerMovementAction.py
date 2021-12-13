@@ -32,12 +32,16 @@ class HandlePlayerMovementAction(InputAction):
 
         if self._keyboard_service.is_key_down(keys.A):
             self.player.set_animating(True)
+            if not self.player.flipped():
+                self.player.flip_image()
             if self.player.get_vx() > -PLAYERSPEED:
                 player_vx = -PLAYERSPEED
                 self.player.set_is_facing_right(False)
                 
         if self._keyboard_service.is_key_down(keys.D):
             self.player.set_animating(True)
+            if  self.player.flipped():
+                self.player.flip_image()
             if self.player.get_vx() < PLAYERSPEED:
                 player_vx = PLAYERSPEED
                 self.player.set_is_facing_right(True)

@@ -8,6 +8,5 @@ class DrawActorAction(Action):
     def execute(self, actors, actions, clock, callback):
         self._screen_service.fill_screen()
         all_actors = actors.get_all_actors()
-        for actor in all_actors:
-            # self._screen_service.load_texture(actor.get_position(), actor.get_width(), actor.get_height(), (0,0,0, 255), 5)
-            self._screen_service.draw_actors(all_actors)
+           
+        self._screen_service.draw_actors(all_actors)

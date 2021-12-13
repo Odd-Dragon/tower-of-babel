@@ -16,7 +16,7 @@ class HandleJumpingAction(Action):
         if self._keyboard_service.is_key_pressed(keys.W) and not player.get_airborne():
             player.set_airborne(True)
             player.set_vy(JUMPSPEED)
-            self._audio_service.play_sound("genie/assets/jump.wav", 0.1)
+            self._audio_service.play_sound("resources/jump.wav", 0.1)
 
         if self._keyboard_service.is_key_pressed(keys.E) and player.get_feathers() > 0:
             player.remove_a_feather()
@@ -30,4 +30,4 @@ class HandleJumpingAction(Action):
             if player.get_vx() < 0:
                 player.set_vx(player.get_vx()-DASHSPEED_X)
                 #player.set_x(player.get_x()-DASHSPEED_X*2)
-            self._audio_service.play_sound("genie/assets/zombie-dash.wav", 0.1)
+            self._audio_service.play_sound("resources/zombie-dash.wav", 0.1)
