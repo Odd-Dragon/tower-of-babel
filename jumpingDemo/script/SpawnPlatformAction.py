@@ -12,7 +12,7 @@ class SpawnPlatformAction(UpdateAction):
         
         
     def _create_platforms(self, width:int, height:int, x:int, y:int):
-        return Actor("genie/assets/platform.png", width, height, x, y, vy=1.5)
+        return Actor("resources/platform.png", width, height, x, y, vy=1.5)
 
     def execute(self, actors, actions, clock, callback):
         width = rd.randint(200,300)
