@@ -49,7 +49,11 @@ def main():
         file_index = i
         player_animations.append(f"resources/zombie{file_index}.png")
     player = Player(player_animations, 50, 50, 30, MAX_FPS, True, 200, 300)
-    base_platform = Actor("", 600, 400, 300, 1000)
+    limit_top = Actor("genie/assets/platform.png", 600, 400, 300, -200)
+    limit_bottom = Actor("", 600, 400, 300, 1000)
+    
+    limit_left = Actor("", 600, 800, -300, 400)
+    limit_right = Actor("", 600, 800, 900, 400)
 
     platform1 = Actor("genie/assets/platform.png", 200, 20, 400, 650, vy=1.5)
     platform2 = Actor("genie/assets/platform.png", 200, 20, 100, 500, vy=1.5)
@@ -65,7 +69,10 @@ def main():
     cast.add_actor("background", background2)
     cast.add_actor("background", background3)
     cast.add_actor("player", player)
-    cast.add_actor("base_platform", base_platform)
+    cast.add_actor("limit_platforms", limit_top)
+    cast.add_actor("limit_platforms", limit_bottom)
+    cast.add_actor("limit_platforms", limit_left)
+    cast.add_actor("limit_platforms", limit_right)
     cast.add_actor("platforms", platform1)
     cast.add_actor("platforms", platform2)
     cast.add_actor("platforms", platform3)

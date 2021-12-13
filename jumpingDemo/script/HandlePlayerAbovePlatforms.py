@@ -18,7 +18,7 @@ class HandlePlayerAbovePlatforms(Action):
                 player.set_vy(0)
                 airborne = False
                 #player.set_airborne(False)
-        for base_platform in actors.get_actors("base_platform"):
+        for base_platform in actors.get_actors("limit_platforms"):
             if self._physics_service.check_collision(base_platform, player) and self._physics_service.is_above(player, base_platform):
                 base_platform_top = base_platform.get_top_left()[1]
                 player.set_y(base_platform_top - (player.get_height() / 2))

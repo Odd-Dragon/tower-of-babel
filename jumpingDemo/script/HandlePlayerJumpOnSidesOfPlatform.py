@@ -20,3 +20,14 @@ class HandlePlayerJumpOnSidesOfPlatform(Action):
                 if self._physics_service.is_right_of(player, platform):
                     platform_right = platform.get_top_right()[0]
                     player.set_x(platform_right + (player.get_width() / 2))
+        for platform in actors.get_actors("limit_platforms"):
+            if self._physics_service.check_collision(platform, player):
+                # If collides from the left or right, prevents player from going through platform
+
+                if self._physics_service.is_left_of(player, platform):
+                    platform_left = platform.get_top_left()[0]
+                    player.set_x(platform_left - (player.get_width() / 2))
+
+                if self._physics_service.is_right_of(player, platform):
+                    platform_right = platform.get_top_right()[0]
+                    player.set_x(platform_right + (player.get_width() / 2))
