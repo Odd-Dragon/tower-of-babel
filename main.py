@@ -31,7 +31,7 @@ from jumpingDemo.cast.player import Player
 from jumpingDemo.cast.background import Background
 
 W_SIZE = (600, 800)
-
+MAX_FPS = 120
 def main():
     
     screen_service = RaylibScreenService(W_SIZE)
@@ -43,7 +43,12 @@ def main():
 
     cast = Cast()
     
-    player = Player("genie/assets/zombie.png", 50, 50, 200, 800)
+    #Add the animated Player:
+    player_animations = []
+    for i in range(1, 3):
+        file_index = i
+        player_animations.append(f"resources/zombie{file_index}.png")
+    player = Player(player_animations, 50, 50, 30, MAX_FPS, True, 200, 300)
     base_platform = Actor("", 600, 400, 300, 1000)
 
     platform1 = Actor("genie/assets/platform.png", 200, 20, 400, 650, vy=1.5)

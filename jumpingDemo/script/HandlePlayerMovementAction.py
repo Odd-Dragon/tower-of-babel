@@ -1,15 +1,16 @@
-from genie.script.action import Action
+from genie.script.action import InputAction
 from genie.services import *
 GRAVITY = 1
 
-class HandlePlayerMovementAction(Action):
+class HandlePlayerMovementAction(InputAction):
     def __init__(self, priority, keyboard_service):
-        self._keyboard_service = keyboard_service
         super().__init__(priority)
-
+        self._keyboard_service = keyboard_service
+        
+        
     def execute(self, actors, actions, clock, callback):
-        player = actors.get_first_actor("player")
-        player_vx = player.get_vx()
+        self.player = actors.get_first_actor("player")
+        player_vx = self.player.get_vx()
 
         PLAYERSPEED = 5
         AIRDRAG = 0.5
@@ -30,15 +31,19 @@ class HandlePlayerMovementAction(Action):
                     player_vx += AIRDRAG
 
         if self._keyboard_service.is_key_down(keys.A):
-            if player.get_vx() > -PLAYERSPEED:
+            self.player.set_animating(True)
+            if self.player.get_vx() > -PLAYERSPEED:
                 player_vx = -PLAYERSPEED
-                player.set_is_facing_right(False)
+                self.player.set_is_facing_right(False)
+                
         if self._keyboard_service.is_key_down(keys.D):
-            if player.get_vx() < PLAYERSPEED:
+            self.player.set_animating(True)
+            if self.player.get_vx() < PLAYERSPEED:
                 player_vx = PLAYERSPEED
-                player.set_is_facing_right(True)
+                self.player.set_is_facing_right(True)
+                
         
         
                 
 
-        player.set_vx(player_vx)
+        self.player.set_vx(player_vx)
