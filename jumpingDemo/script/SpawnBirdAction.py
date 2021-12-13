@@ -11,7 +11,7 @@ class SpawnBirdAction(Action):
         self._frame += 1
         if self._frame == 80:
             left_or_right_spawn = randint(0, 1) * 600
-            vertical_spawn_point = randint(400, 800)
+            vertical_spawn_point = randint(100, 600)
             if left_or_right_spawn == 0:
                 bird_velocity = 5
             else:
