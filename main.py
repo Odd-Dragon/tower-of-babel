@@ -1,3 +1,4 @@
+
 from jumpingDemo.script.DrawActorAction import DrawActorAction
 from jumpingDemo.script.HandleJumpingAction import HandleJumpingAction
 from jumpingDemo.script.HandleQuitAction import HandleQuitAction
@@ -15,6 +16,9 @@ from jumpingDemo.script.HandlePlayerJumpAtBottomOfPlatform import HandlePlayerJu
 from jumpingDemo.script.SpawnPlatformAction import SpawnPlatformAction
 from jumpingDemo.script.ThrowDounutAction import ThrowDounutAction
 from jumpingDemo.script.HandleDounutsAction import HandleDounutsAction
+from jumpingDemo.script.DounutBirdCollisionAction import DounutBirdCollisionAction
+from jumpingDemo.script.PlayerFeatherCollisionAction import PlayerFeatherCollisionAction
+from jumpingDemo.script.PlayerTimerAction import PlayerTimerAction
 
 from genie.cast.cast import Cast
 from genie.cast.actor import Actor
@@ -81,6 +85,9 @@ def main():
     #script.add_action("update", MoveBackgroundAction(1))
     script.add_action("update", RemovePlatformAction(1))
     script.add_action("update", HandleDounutsAction(1))
+    script.add_action("update", DounutBirdCollisionAction(1, physics_service))
+    script.add_action("update", PlayerFeatherCollisionAction(1, physics_service))
+    script.add_action("update", PlayerTimerAction(1))
 
 
     script.add_action("output", DrawActorAction(1, screen_service))

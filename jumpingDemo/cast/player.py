@@ -6,6 +6,9 @@ class Player(Actor):
         self._has_dash = True
         self._can_throw_dounut = True
         self._is_facing_right = True
+        self._feathers = 0
+        self._MAX_FALLSPEED_RESET_TO = 10
+        self._max_fallspeed = self._MAX_FALLSPEED_RESET_TO
         super().__init__(path, width, height, x=x, y=y, vx=vx, vy=vy, rotation=rotation, rotation_vel=rotation_vel, flipped=flipped)\
     
     def get_airborne(self):
@@ -32,3 +35,21 @@ class Player(Actor):
     def set_is_facing_right(self, new:bool):
         self._is_facing_right = new
         #self.flipped = not self._is_facing_right
+
+    def get_feathers(self):
+        return self._feathers
+
+    def add_a_feather(self):
+        self._feathers += 1
+
+    def remove_a_feather(self):
+        self._feathers -= 1
+
+    def get_max_fallspeed(self):
+        return self._max_fallspeed
+
+    def set_max_fallspeed(self, fallspeed):
+        self._max_fallspeed = fallspeed
+
+    def get_max_fallspeed_reset_to(self):
+        return self._MAX_FALLSPEED_RESET_TO
