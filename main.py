@@ -20,7 +20,7 @@ from jumpingDemo.script.HandleDounutsAction import HandleDounutsAction
 from jumpingDemo.script.DounutBirdCollisionAction import DounutBirdCollisionAction
 from jumpingDemo.script.PlayerFeatherCollisionAction import PlayerFeatherCollisionAction
 from jumpingDemo.script.PlayerTimerAction import PlayerTimerAction
-
+from jumpingDemo.script.HandleGameOver import GameOver
 from genie.cast.cast import Cast
 from genie.cast.actor import Actor
 from genie.script.script import Script
@@ -76,7 +76,7 @@ def main():
     background3 = Background(301,850)
 
     start_button = Actor("resources/start_game_button.png", 305, 51, 300, 400)
-    
+    game_over = Actor("resources/game_over.png", 305, 51, 300, 400)
     
     cast.add_actor("background", background1)
     cast.add_actor("background", background2)
@@ -113,7 +113,7 @@ def main():
    
     
 
-    script.add_action("update", HandlePlayerAbovePlatforms(1, physics_service))
+    script.add_action("update", HandlePlayerAbovePlatforms(1, physics_service, game_over))
     script.add_action("update", HandlePlayerJumpAtBottomOfPlatform(1, physics_service))
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
     script.add_action("update", ApplyGravtityToPlayer(2))
@@ -124,6 +124,7 @@ def main():
     script.add_action("update", DounutBirdCollisionAction(1, physics_service))
     script.add_action("update", PlayerFeatherCollisionAction(1, physics_service))
     script.add_action("update", PlayerTimerAction(1))
+    script.add_action("update", GameOver(1, physics_service, game_over))
 
 
     script.add_action("output", DrawActorAction(1, screen_service))
