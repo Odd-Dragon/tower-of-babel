@@ -2,6 +2,7 @@
 from jumpingDemo.script.DrawActorAction import DrawActorAction
 from jumpingDemo.script.HandleJumpingAction import HandleJumpingAction
 from jumpingDemo.script.HandleQuitAction import HandleQuitAction
+from jumpingDemo.script.HandleStartGameAction import HandleStartGameAction
 from jumpingDemo.script.RemovePlatformAction import RemovePlatformAction
 from jumpingDemo.script.SpawnBirdAction import SpawnBirdAction
 from jumpingDemo.script.RemoveBirdAction import RemoveBirdAction
@@ -29,6 +30,7 @@ from genie.director import Director
 from genie.services import *
 from jumpingDemo.cast.player import Player
 from jumpingDemo.cast.background import Background
+from jumpingDemo.cast.startGameButton import StartGameButton
 
 W_SIZE = (600, 800)
 MAX_FPS = 120
@@ -38,12 +40,15 @@ def main():
     physics_service = RaylibPhysicsService()
     keyboard_service = RaylibKeyboardService()
     audio_service = RaylibAudioService()
+    mouse_service = RaylibMouseService()
 
     director = Director()
 
     cast = Cast()
     
     #Add the animated Player:
+      
+
     player_animations = []
     for i in range(1, 3):
         
@@ -51,9 +56,14 @@ def main():
     player = Player(player_animations, 50, 50, 30, MAX_FPS, True, 200, 300)
     limit_top = Actor("resources/platform.png", 600, 400, 300, -200)
     limit_bottom = Actor("", 600, 400, 300, 1000)
+
     
+                               
+                                
+
     limit_left = Actor("", 600, 800, -300, 400)
     limit_right = Actor("", 600, 800, 900, 400)
+
 
     platform1 = Actor("resources/platform.png", 200, 20, 400, 600, vy=1.5)
     platform2 = Actor("resources/platform.png", 200, 20, 100, 450, vy=1.5)
@@ -65,6 +75,9 @@ def main():
     background2 = Background(301,300)
     background3 = Background(301,850)
 
+    start_button = Actor("resources/start_game_button.png", 305, 51, 300, 400)
+    
+    
     cast.add_actor("background", background1)
     cast.add_actor("background", background2)
     cast.add_actor("background", background3)
@@ -78,17 +91,28 @@ def main():
     cast.add_actor("platforms", platform3)
     cast.add_actor("platforms", platform4)
     cast.add_actor("platforms", platform5)
+    cast.add_actor("start_button", start_button)
     
     script = Script()
 
-    script.add_action("input", HandleQuitAction(1, keyboard_service))
-    script.add_action("input", HandleJumpingAction(1, keyboard_service, audio_service))
-    script.add_action("input", HandlePlayerMovementAction(1, keyboard_service))
-    script.add_action("input", SpawnBirdAction(1))
-    script.add_action("input", ThrowDounutAction(1, keyboard_service, audio_service))
+    startgame_actions = {"input" : [], "update" : [], "output": []}
+    startgame_actions["input"].append(HandleJumpingAction(1, keyboard_service, audio_service))
+    startgame_actions["input"].append(HandlePlayerMovementAction(1, keyboard_service))
+    startgame_actions["input"].append(SpawnBirdAction(1))
+    startgame_actions["input"].append(ThrowDounutAction(1, keyboard_service, audio_service))
+    startgame_actions["input"].append(MoveActorsAction(1, physics_service))
+    startgame_actions["update"].append(SpawnPlatformAction(1, physics_service))
     
-    script.add_action("update", MoveActorsAction(1, physics_service))
-    script.add_action("update", SpawnPlatformAction(1, physics_service))
+    
+
+
+
+    script.add_action("input", HandleStartGameAction(2, mouse_service, physics_service, startgame_actions))
+    script.add_action("input", HandleQuitAction(1, keyboard_service))
+
+   
+    
+
     script.add_action("update", HandlePlayerAbovePlatforms(1, physics_service))
     script.add_action("update", HandlePlayerJumpAtBottomOfPlatform(1, physics_service))
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
