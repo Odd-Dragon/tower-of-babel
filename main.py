@@ -21,6 +21,9 @@ from jumpingDemo.script.DounutBirdCollisionAction import DounutBirdCollisionActi
 from jumpingDemo.script.PlayerFeatherCollisionAction import PlayerFeatherCollisionAction
 from jumpingDemo.script.PlayerTimerAction import PlayerTimerAction
 from jumpingDemo.script.HandleGameOver import GameOver
+from jumpingDemo.script.PlayBackgroundMusic import PlayBackgroundMusicAction
+
+
 from genie.cast.cast import Cast
 from genie.cast.actor import Actor
 from genie.script.script import Script
@@ -53,11 +56,11 @@ def main():
     for i in range(1, 3):
         
         player_animations.append(f"resources/zombie{i}.png")
-    player = Player(player_animations, 50, 50, 30, MAX_FPS, True, 200, 300)
+    player = Player(player_animations, 55, 75, 30, MAX_FPS, True, 200, 300)
     limit_top = Actor("resources/platform.png", 600, 400, 300, -200)
     limit_bottom = Actor("", 600, 400, 300, 1000)
 
-    
+  
                                
                                 
 
@@ -74,6 +77,7 @@ def main():
     background1 = Background(301,0)
     background2 = Background(301,300)
     background3 = Background(301,850)
+    
 
     start_button = Actor("resources/start_game_button.png", 305, 51, 300, 400)
     game_over = Actor("resources/game_over.png", 305, 51, 300, 400)
@@ -106,13 +110,13 @@ def main():
     
 
 
-
+    
     script.add_action("input", HandleStartGameAction(2, mouse_service, physics_service, startgame_actions))
     script.add_action("input", HandleQuitAction(1, keyboard_service))
 
    
     
-
+    
     script.add_action("update", HandlePlayerAbovePlatforms(1, physics_service, game_over))
     script.add_action("update", HandlePlayerJumpAtBottomOfPlatform(1, physics_service))
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
@@ -127,6 +131,7 @@ def main():
     script.add_action("update", GameOver(1, physics_service, game_over))
 
 
+    script.add_action("output", PlayBackgroundMusicAction(2, "resources/background_music.wav", audio_service))
     script.add_action("output", DrawActorAction(1, screen_service))
     script.add_action("output", UpdateScreenAction(2, screen_service))
     
