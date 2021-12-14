@@ -13,8 +13,8 @@ class SpawnBirdAction(Action):
         for i in range(1, 4):
             bird_animations.append(f"resources/bird{i}.png")
                 
-        if self._frame == 80:
-            left_or_right_spawn = randint(0, 1) * 600
+        if self._frame == 150:
+            left_or_right_spawn = randint(0, 1) * 800
             vertical_spawn_point = randint(100, 600)
             if left_or_right_spawn == 0:
                 bird_velocity = 3

@@ -4,17 +4,17 @@ from genie.script.action import Action
 from jumpingDemo.script.SpawnPlatformAction import SPAWN_INTERVAL
 
 class CreateBackgroundAction(Action):
-    def __init__(self, priority):
-
+    def __init__(self, priority, window_size):
+        self._window_size = window_size
         super().__init__(priority)   
         
 
 
     def execute(self, actors, actions, clock, callback):
 
-  
+        x = 400
         y = -499
-        x = 300
+        
         # background = Actor("resources/background.png", 600, 900, x, y,  vy=1)
         backgrounds = actors.get_actors("background")
         for background in backgrounds:

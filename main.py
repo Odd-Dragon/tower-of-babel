@@ -36,7 +36,7 @@ from jumpingDemo.cast.player import Player
 from jumpingDemo.cast.background import Background
 from jumpingDemo.cast.startGameButton import StartGameButton
 
-W_SIZE = (600, 800)
+W_SIZE = (800, 800)
 MAX_FPS = 120
 def main():
     
@@ -59,28 +59,28 @@ def main():
         player_animations.append(f"resources/zombie{i}.png")
     player = Player(player_animations, 55, 75, 30, MAX_FPS, True, 200, 300)
     limit_top = Actor("resources/platform.png", 600, 400, 300, -200)
-    limit_bottom = Actor("", 600, 400, 300, 1000)
+    limit_bottom = Actor("", 1000, 400, 300, 1000)
 
   
                                
                                 
 
-    limit_left = Actor("", 600, 800, -300, 400)
-    limit_right = Actor("", 600, 800, 900, 400)
+    limit_left = Actor("", 600, 900, -200, 400)
+    limit_right = Actor("", 600, 900, 1000, 400)
 
 
-    platform1 = Actor("resources/platform.png", 200, 30, 400, 600, vy=1.5)
-    platform2 = Actor("resources/platform.png", 200, 30, 100, 450, vy=1.5)
-    platform3 = Actor("resources/platform.png", 300, 30, 400, 300, vy=1.5)
-    platform4 = Actor("resources/platform.png", 200, 30, 500, 150, vy=1.5)
-    platform5 = Actor("resources/platform.png", 300, 30, 100, 0, vy=1.5)
+    platform1 = Actor("resources/platform.png", 200, 30, 500, 600, vy=1.5)
+    platform2 = Actor("resources/platform.png", 200, 30, 300, 450, vy=1.5)
+    platform3 = Actor("resources/platform.png", 300, 30, 500, 300, vy=1.5)
+    platform4 = Actor("resources/platform.png", 200, 30, 550, 150, vy=1.5)
+    platform5 = Actor("resources/platform.png", 300, 30, 300, 0, vy=1.5)
    
-    background1 = Actor("resources/background.png", 600, 900, 300, 400,  vy=1)
+    background1 = Actor("resources/background.png", 600, 900, W_SIZE[0] / 2, W_SIZE[1] /2,  vy=1)
    
     
 
-    start_button = Actor("resources/start_game_button.png", 305, 51, 300, 400)
-    game_over = Actor("resources/game_over.png", 305, 51, 300, 400)
+    start_button = Actor("resources/start_game_button.png", 305, 51, W_SIZE[0] / 2, W_SIZE[1] /2)
+    game_over = Actor("resources/game_over.png", 305, 51, W_SIZE[0] / 2, W_SIZE[1] /2)
     
     cast.add_actor("background", background1)
     
@@ -104,7 +104,7 @@ def main():
     startgame_actions["input"].append(HandlePlayerMovementAction(1, keyboard_service))
     startgame_actions["input"].append(SpawnBirdAction(1))
     startgame_actions["input"].append(ThrowDounutAction(1, keyboard_service, audio_service))
-    startgame_actions["input"].append(CreateBackgroundAction(1))
+    startgame_actions["input"].append(CreateBackgroundAction(1, W_SIZE))
     startgame_actions["input"].append(MoveActorsAction(1, physics_service))
     startgame_actions["update"].append(SpawnPlatformAction(1, physics_service))
 

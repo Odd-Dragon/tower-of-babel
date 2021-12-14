@@ -18,7 +18,7 @@ class SpawnPlatformAction(UpdateAction):
         width = rd.randint(200,300)
         height = 30
         y = 0
-        x = rd.randint(100, 500)
+        x = rd.randint(260, 520)
         if time.time() - self._last_spawn >= SPAWN_INTERVAL:
             platform = self._create_platforms(width, height, x, y)
             actors.add_actor("platforms", platform)
