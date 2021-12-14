@@ -22,6 +22,10 @@ from jumpingDemo.script.DounutBirdCollisionAction import DounutBirdCollisionActi
 from jumpingDemo.script.PlayerFeatherCollisionAction import PlayerFeatherCollisionAction
 from jumpingDemo.script.PlayerTimerAction import PlayerTimerAction
 from jumpingDemo.script.HandleGameOver import GameOver
+from jumpingDemo.script.PlayBackgroundMusic import PlayBackgroundMusicAction
+from jumpingDemo.script.RemoveBackgroundAction import RemoveBackgroundAction
+
+
 from genie.cast.cast import Cast
 from genie.cast.actor import Actor
 from genie.script.script import Script
@@ -63,7 +67,7 @@ def main():
     limit_top = Actor("resources/platform.png", W_SIZE[0], 400, W_SIZE[0]/2, -200)
     limit_bottom = Actor("", W_SIZE[0], 400, W_SIZE[0]/2, W_SIZE[1]+180)
 
-    
+  
                                
                                 
     difficulty = player.get_difficulty()
@@ -88,6 +92,7 @@ def main():
     start_button = Actor("resources/start_game_button.png", 305, 51, W_SIZE[0]/2, 300)
     game_over = Actor("resources/game_over.png", 305, 51, W_SIZE[0]/2, 300)
     
+    cast.add_actor("static_image", static_image)
     cast.add_actor("background", background1)
     cast.add_actor("background", background2)
     cast.add_actor("background", background3)
@@ -109,6 +114,7 @@ def main():
     cast.add_actor("platforms", platform5)
     cast.add_actor("start_button", start_button)
     
+    
     script = Script()
 
     startgame_actions = {"input" : [], "update" : [], "output": []}
@@ -116,19 +122,21 @@ def main():
     startgame_actions["input"].append(HandlePlayerMovementAction(1, keyboard_service))
     startgame_actions["input"].append(SpawnBirdAction(1))
     startgame_actions["input"].append(ThrowDounutAction(1, keyboard_service, audio_service))
+    startgame_actions["input"].append(CreateBackgroundAction(1, W_SIZE))
     startgame_actions["input"].append(MoveActorsAction(1, physics_service))
     startgame_actions["update"].append(SpawnPlatformAction(1, physics_service))
+
     
     
 
 
-
+    
     script.add_action("input", HandleStartGameAction(2, mouse_service, physics_service, startgame_actions))
     script.add_action("input", HandleQuitAction(1, keyboard_service))
 
    
     
-
+    
     script.add_action("update", HandlePlayerAbovePlatforms(1, physics_service, game_over))
     script.add_action("update", HandlePlayerJumpAtBottomOfPlatform(1, physics_service))
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
@@ -136,6 +144,7 @@ def main():
     script.add_action("update", RemoveBirdAction(1))
     script.add_action("update", MoveBackgroundAction(1))
     script.add_action("update", RemovePlatformAction(1))
+    script.add_action("update", RemoveBackgroundAction(1))
     script.add_action("update", HandleDounutsAction(1))
     script.add_action("update", DounutBirdCollisionAction(1, physics_service))
     script.add_action("update", PlayerFeatherCollisionAction(1, physics_service))
@@ -143,6 +152,7 @@ def main():
     script.add_action("update", GameOver(1, physics_service, game_over))
 
 
+    script.add_action("output", PlayBackgroundMusicAction(2, "resources/background_music.wav", audio_service))
     script.add_action("output", DrawActorAction(1, screen_service))
     script.add_action("output", UpdateScreenAction(2, screen_service))
     
