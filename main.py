@@ -76,15 +76,16 @@ def main():
     platform5 = Actor("resources/platform.png", 300, 30, 300, 0, vy=1.5)
    
     background1 = Actor("resources/background.png", 600, 900, W_SIZE[0] / 2, W_SIZE[1] /2,  vy=1)
-   
+    static_image = Actor("resources/forest.png", 1090, 872,  W_SIZE[0] / 2, W_SIZE[1] /2)
     
 
     start_button = Actor("resources/start_game_button.png", 305, 51, W_SIZE[0] / 2, W_SIZE[1] /2)
     game_over = Actor("resources/game_over.png", 305, 51, W_SIZE[0] / 2, W_SIZE[1] /2)
     
+    cast.add_actor("static_image", static_image)
     cast.add_actor("background", background1)
     
-
+    
     cast.add_actor("player", player)
     cast.add_actor("limit_platforms", limit_top)
     cast.add_actor("limit_platforms", limit_bottom)
@@ -96,6 +97,7 @@ def main():
     cast.add_actor("platforms", platform4)
     cast.add_actor("platforms", platform5)
     cast.add_actor("start_button", start_button)
+    
     
     script = Script()
 
