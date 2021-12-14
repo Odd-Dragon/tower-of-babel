@@ -92,7 +92,7 @@ def main():
     start_button = Actor("resources/start_game_button.png", 305, 51, W_SIZE[0]/2, 300)
     game_over = Actor("resources/game_over.png", 305, 51, W_SIZE[0]/2, 300)
     
-    cast.add_actor("static_image", static_image)
+    #cast.add_actor("static_image", static_image)
     cast.add_actor("background", background1)
     cast.add_actor("background", background2)
     cast.add_actor("background", background3)
@@ -122,7 +122,7 @@ def main():
     startgame_actions["input"].append(HandlePlayerMovementAction(1, keyboard_service))
     startgame_actions["input"].append(SpawnBirdAction(1))
     startgame_actions["input"].append(ThrowDounutAction(1, keyboard_service, audio_service))
-    startgame_actions["input"].append(CreateBackgroundAction(1, W_SIZE))
+    #startgame_actions["input"].append(CreateBackgroundAction(1, W_SIZE))
     startgame_actions["input"].append(MoveActorsAction(1, physics_service))
     startgame_actions["update"].append(SpawnPlatformAction(1, physics_service))
 
