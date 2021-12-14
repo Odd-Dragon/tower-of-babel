@@ -8,7 +8,7 @@ class HandleJumpingAction(Action):
         super().__init__(priority)
 
     def execute(self, actors, actions, clock, callback):
-        JUMPSPEED = -8
+        JUMPSPEED = -9
         DASHSPEED_Y = -10
         DASHSPEED_X = 16
         player = actors.get_first_actor("player")

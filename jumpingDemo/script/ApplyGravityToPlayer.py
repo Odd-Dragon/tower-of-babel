@@ -12,4 +12,4 @@ class ApplyGravtityToPlayer(Action):
             if player.get_vy() < player.get_max_fallspeed():
                 player.set_vy(player.get_vy() + GRAVITY)
         else:
-            player.set_vy(2)
+            player.set_vy(player.get_difficulty()+0.5)

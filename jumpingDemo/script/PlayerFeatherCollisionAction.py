@@ -1,8 +1,7 @@
 #Taco
 from genie.script.action import Action
 from jumpingDemo.cast.feather_display import FeatherDisplay
-#from main import W_SIZE
-W_SIZE = (600, 800)
+from globals import *
 
 class PlayerFeatherCollisionAction(Action):
     def __init__(self, priority, physics_service):
@@ -19,7 +18,7 @@ class PlayerFeatherCollisionAction(Action):
                 if self._physics_service.check_collision(feather, player):
                     position_number = player.get_feathers()
                     player.add_a_feather()
-                    feather_display = FeatherDisplay("resources/feather.png", 40, 40, W_SIZE[0] - 30, W_SIZE[1] - 30, 0, 0, 0, 0, False)
+                    feather_display = FeatherDisplay("resources/feather.png", 40, 40, W_SIZE[0] - 50, W_SIZE[1] - 50, 0, 0, 0, 0, False)
                     feather_display.set_position_number(position_number)
                     actors.remove_actor("feathers", feather)
                     actors.add_actor("feather_display", feather_display)

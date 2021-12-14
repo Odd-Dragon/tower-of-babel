@@ -25,5 +25,5 @@ class ThrowDounutAction(Action):
                     
             velocity_y = player.get_vy() + THROWSPEED_Y
 
-            new_dounut = Dounut("resources/dounut.png", 6, 6, player.get_x(), player.get_y(), velocity_x, velocity_y, 0, 10, False)
+            new_dounut = Dounut("resources/dounut.png", 12, 12, player.get_x(), player.get_y(), velocity_x, velocity_y, 0, 10, False)
             actors.add_actor("dounuts", new_dounut)

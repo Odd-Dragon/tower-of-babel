@@ -3,7 +3,7 @@ from genie.script.action import Action
 class PlayerTimerAction(Action):
     def __init__(self, priority):
         self._FALLSPEED_RESET_RESET = 120
-        self._DOUNUT_RESET = 30
+        self._DOUNUT_RESET =20
         self._fallspeed_reset_timer = self._FALLSPEED_RESET_RESET
         self._dounut_timer = self._DOUNUT_RESET
         super().__init__(priority)

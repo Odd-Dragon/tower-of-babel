@@ -1,4 +1,5 @@
-
+from random import randint
+from globals import *
 from jumpingDemo.script.DrawActorAction import DrawActorAction
 from jumpingDemo.script.HandleJumpingAction import HandleJumpingAction
 from jumpingDemo.script.HandleQuitAction import HandleQuitAction
@@ -13,7 +14,7 @@ from jumpingDemo.script.HandlePlayerAbovePlatforms import HandlePlayerAbovePlatf
 from jumpingDemo.script.HandlePlayerMovementAction import HandlePlayerMovementAction
 from jumpingDemo.script.HandlePlayerJumpOnSidesOfPlatform import HandlePlayerJumpOnSidesOfPlatform
 from jumpingDemo.script.HandlePlayerJumpAtBottomOfPlatform import HandlePlayerJumpAtBottomOfPlatform
-#from jumpingDemo.script.MoveBackgroundAction import MoveBackgroundAction
+from jumpingDemo.script.MoveBackgroundAction import MoveBackgroundAction
 from jumpingDemo.script.SpawnPlatformAction import SpawnPlatformAction
 from jumpingDemo.script.ThrowDounutAction import ThrowDounutAction
 from jumpingDemo.script.HandleDounutsAction import HandleDounutsAction
@@ -29,10 +30,10 @@ from genie.director import Director
 
 from genie.services import *
 from jumpingDemo.cast.player import Player
+from jumpingDemo.cast.feather import Feather
 from jumpingDemo.cast.background import Background
 from jumpingDemo.cast.startGameButton import StartGameButton
 
-W_SIZE = (600, 800)
 MAX_FPS = 120
 def main():
     
@@ -53,35 +54,50 @@ def main():
     for i in range(1, 3):
         
         player_animations.append(f"resources/zombie{i}.png")
-    player = Player(player_animations, 50, 50, 30, MAX_FPS, True, 200, 300)
-    limit_top = Actor("resources/platform.png", 600, 400, 300, -200)
-    limit_bottom = Actor("", 600, 400, 300, 1000)
+    PLAYER_START_X = W_SIZE[0]/2
+    PLAYER_START_Y = 100
+    player = Player(player_animations, 35, 50, 30, MAX_FPS, True, PLAYER_START_X, PLAYER_START_Y)
+    feather1 = Feather("resources/feather.png", 30, 30, PLAYER_START_X, PLAYER_START_Y, 0, 0, 0, 0, False)
+    feather2 = Feather("resources/feather.png", 30, 30, PLAYER_START_X, PLAYER_START_Y, 0, 0, 0, 0, False)
+    feather3 = Feather("resources/feather.png", 30, 30, PLAYER_START_X, PLAYER_START_Y, 0, 0, 0, 0, False)
+    limit_top = Actor("resources/platform.png", W_SIZE[0], 400, W_SIZE[0]/2, -200)
+    limit_bottom = Actor("", W_SIZE[0], 400, W_SIZE[0]/2, W_SIZE[1]+180)
 
     
                                
                                 
+    difficulty = player.get_difficulty()
+    limit_left = Actor("resources/background.png", 600, W_SIZE[1], -200, W_SIZE[1]/2)
+    limit_right = Actor("resources/background.png", 600, W_SIZE[1], W_SIZE[0]+200, W_SIZE[1]/2)
+    # "" Width Height X Y
+    platform1 = Actor("resources/platform.png", 400, 20, randint(100,W_SIZE[0]-100), 600, vy=difficulty)
+    platform2 = Actor("resources/platform.png", 400, 20, randint(100,W_SIZE[0]-100), 450, vy=difficulty)
+    platform3 = Actor("resources/platform.png", 400, 20, randint(100,W_SIZE[0]-100), 300, vy=difficulty)
+    platform4 = Actor("resources/platform.png", 400, 20, randint(100,W_SIZE[0]-100), 150, vy=difficulty)
+    platform5 = Actor("resources/platform.png", 400, 20, randint(100,W_SIZE[0]-100), 0, vy=difficulty)
+    
+    background_x = W_SIZE[0]/2
+    background_y = W_SIZE[1]/5
+    background1 = Background(background_x,0)
+    background2 = Background(background_x,background_y)
+    background3 = Background(background_x,background_y*2)
+    background4 = Background(background_x,background_y*3)
+    background5 = Background(background_x,background_y*4)
+    background6 = Background(background_x,background_y*5)
 
-    limit_left = Actor("", 600, 800, -300, 400)
-    limit_right = Actor("", 600, 800, 900, 400)
-
-
-    platform1 = Actor("resources/platform.png", 200, 20, 400, 600, vy=1.5)
-    platform2 = Actor("resources/platform.png", 200, 20, 100, 450, vy=1.5)
-    platform3 = Actor("resources/platform.png", 300, 20, 400, 300, vy=1.5)
-    platform4 = Actor("resources/platform.png", 200, 20, 500, 150, vy=1.5)
-    platform5 = Actor("resources/platform.png", 300, 20, 100, 0, vy=1.5)
-   
-    background1 = Background(301,0)
-    background2 = Background(301,300)
-    background3 = Background(301,850)
-
-    start_button = Actor("resources/start_game_button.png", 305, 51, 300, 400)
-    game_over = Actor("resources/game_over.png", 305, 51, 300, 400)
+    start_button = Actor("resources/start_game_button.png", 305, 51, W_SIZE[0]/2, 300)
+    game_over = Actor("resources/game_over.png", 305, 51, W_SIZE[0]/2, 300)
     
     cast.add_actor("background", background1)
     cast.add_actor("background", background2)
     cast.add_actor("background", background3)
+    cast.add_actor("background", background4)
+    cast.add_actor("background", background5)
+    cast.add_actor("background", background6)
     cast.add_actor("player", player)
+    cast.add_actor("feathers", feather1)
+    cast.add_actor("feathers", feather2)
+    cast.add_actor("feathers", feather3)
     cast.add_actor("limit_platforms", limit_top)
     cast.add_actor("limit_platforms", limit_bottom)
     cast.add_actor("limit_platforms", limit_left)
@@ -118,7 +134,7 @@ def main():
     script.add_action("update", HandlePlayerJumpOnSidesOfPlatform(1, physics_service))
     script.add_action("update", ApplyGravtityToPlayer(2))
     script.add_action("update", RemoveBirdAction(1))
-    #script.add_action("update", MoveBackgroundAction(1))
+    script.add_action("update", MoveBackgroundAction(1))
     script.add_action("update", RemovePlatformAction(1))
     script.add_action("update", HandleDounutsAction(1))
     script.add_action("update", DounutBirdCollisionAction(1, physics_service))

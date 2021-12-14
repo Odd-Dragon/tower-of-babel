@@ -34,7 +34,7 @@ class HandlePlayerMovementAction(InputAction):
             self.player.set_animating(True)
             if not self.player.flipped():
                 self.player.flip_image()
-            if self.player.get_vx() > -PLAYERSPEED:
+            if player_vx > -PLAYERSPEED and player_vx < PLAYERSPEED:
                 player_vx = -PLAYERSPEED
                 self.player.set_is_facing_right(False)
                 
@@ -42,7 +42,7 @@ class HandlePlayerMovementAction(InputAction):
             self.player.set_animating(True)
             if  self.player.flipped():
                 self.player.flip_image()
-            if self.player.get_vx() < PLAYERSPEED:
+            if player_vx < PLAYERSPEED and player_vx > -PLAYERSPEED:
                 player_vx = PLAYERSPEED
                 self.player.set_is_facing_right(True)
                 

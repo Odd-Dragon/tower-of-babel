@@ -17,6 +17,8 @@ class Player(AnimatedActor):
         self._feathers = 0
         self._MAX_FALLSPEED_RESET_TO = 10
         self._max_fallspeed = self._MAX_FALLSPEED_RESET_TO
+        # How fast everything moves
+        self._difficulty = 1.5
         super().__init__(paths, width, height,  
                             animation_fps, game_fps,
                             event_triggered, x=x, y=y, 
@@ -53,6 +55,13 @@ class Player(AnimatedActor):
 
     def add_a_feather(self):
         self._feathers += 1
+
+    def get_difficulty(self):
+        return self._difficulty
+
+    def increment_difficulty(self):
+        if self._difficulty < 3:
+            self._difficulty += 0.01
 
     def remove_a_feather(self):
         self._feathers -= 1
