@@ -16,7 +16,7 @@ class SpawnPlatformAction(UpdateAction):
 
     def execute(self, actors, actions, clock, callback):
         width = rd.randint(200,300)
-        height = 20
+        height = 30
         y = 0
         x = rd.randint(100, 500)
         if time.time() - self._last_spawn >= SPAWN_INTERVAL:

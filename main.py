@@ -68,23 +68,23 @@ def main():
     limit_right = Actor("", 600, 800, 900, 400)
 
 
-    platform1 = Actor("resources/platform.png", 200, 20, 400, 600, vy=1.5)
-    platform2 = Actor("resources/platform.png", 200, 20, 100, 450, vy=1.5)
-    platform3 = Actor("resources/platform.png", 300, 20, 400, 300, vy=1.5)
-    platform4 = Actor("resources/platform.png", 200, 20, 500, 150, vy=1.5)
-    platform5 = Actor("resources/platform.png", 300, 20, 100, 0, vy=1.5)
+    platform1 = Actor("resources/platform.png", 200, 30, 400, 600, vy=1.5)
+    platform2 = Actor("resources/platform.png", 200, 30, 100, 450, vy=1.5)
+    platform3 = Actor("resources/platform.png", 300, 30, 400, 300, vy=1.5)
+    platform4 = Actor("resources/platform.png", 200, 30, 500, 150, vy=1.5)
+    platform5 = Actor("resources/platform.png", 300, 30, 100, 0, vy=1.5)
    
-    background1 = Background(301,0)
-    background2 = Background(301,300)
-    background3 = Background(301,850)
+    background1 = Background(300,400)
+    # background2 = Background(301,300)
+    # background3 = Background(301,850)
     
 
     start_button = Actor("resources/start_game_button.png", 305, 51, 300, 400)
     game_over = Actor("resources/game_over.png", 305, 51, 300, 400)
     
     cast.add_actor("background", background1)
-    cast.add_actor("background", background2)
-    cast.add_actor("background", background3)
+    # cast.add_actor("background", background2)
+    # cast.add_actor("background", background3)
     cast.add_actor("player", player)
     cast.add_actor("limit_platforms", limit_top)
     cast.add_actor("limit_platforms", limit_bottom)
