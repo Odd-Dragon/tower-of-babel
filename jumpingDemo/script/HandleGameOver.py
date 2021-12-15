@@ -13,7 +13,7 @@ class GameOver(Action):
             if self._physics_service.check_collision(bird, player):
                 player.set_vx(bird.get_vx()*4)
                 actors.remove_actor("birds", bird)
-                #actors.add_actor("game_over", self._game_over)
+                actors.add_actor("game_over", self._game_over)
  
         for base_platform in actors.get_actors("limit_platforms"):
             if self._physics_service.check_collision(base_platform, player) and self._physics_service.is_above(player, base_platform):

@@ -61,7 +61,7 @@ def main():
         player_animations.append(f"resources/zombie{i}.png")
     PLAYER_START_X = W_SIZE[0] - 800
     PLAYER_START_Y = 500
-    player = Player(player_animations, 35, 50, 30, MAX_FPS, True, PLAYER_START_X, PLAYER_START_Y)
+    player = Player(player_animations, 50, 65, 30, MAX_FPS, True, PLAYER_START_X, PLAYER_START_Y)
     feather1 = Feather("resources/feather.png", 30, 30, PLAYER_START_X, PLAYER_START_Y, 0, 0, 0, 0, False)
     feather2 = Feather("resources/feather.png", 30, 30, PLAYER_START_X, PLAYER_START_Y, 0, 0, 0, 0, False)
     feather3 = Feather("resources/feather.png", 30, 30, PLAYER_START_X, PLAYER_START_Y, 0, 0, 0, 0, False)
