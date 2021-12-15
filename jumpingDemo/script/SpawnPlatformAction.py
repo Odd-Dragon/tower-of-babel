@@ -24,7 +24,7 @@ class SpawnPlatformAction(UpdateAction):
             width = rd.randint(400,550)
             height = 20
             y = 0
-            x = rd.randint(200, W_SIZE[0]-200)
+            x = rd.randint(400, W_SIZE[0]-400)
             platform = self._create_platforms(width, height, x, y, vy = player.get_difficulty())
             actors.add_actor("platforms", platform)
             self._last_spawn = time.time()
